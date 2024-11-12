@@ -34,7 +34,7 @@
     </style>
 </head>
 <body>
-<div class="currency-section text-center pt-5 bg-primary-subtle">
+<div class="currency-section text-center pt-5 bg-dark-subtle">
     <h1>Currency Converter</h1>
     <p>Need to make an international business payment? Take a look at our live foreign exchange rates.</p>
     <div class="currency-card">
