@@ -49,22 +49,24 @@
                 </div>
                 <div class="col-md-3 text-center">
                     <select class="form-select" name="from">
-                        <option value="UZS">UZS</option>
+                        
                         <?php
                         global $currencies;
 
-                        // $i = 0;
-                        // foreach ($currencies as $key => $rate){
-                        //     if ($i < 5){
-                        //         echo '<option value="' . $key . '">' . $key . '</option>';
-                        //         $i ++;
-                        //     }
-                        //     else{
-                        //         break;
-                        //     }
+                        $i = 0;
+                        foreach ($currencies as $key => $rate){
+                            if ($i < 5){
+                                echo '<option value="' . $key . '">' . $key . '</option>';
+                                $i ++;
+                            }
+                            else{
+                                break;
+                            }
                              
-                        // }
+                        }
                         ?>
+                        <option value="UZS">UZS</option>
+                        
                     </select>
                 </div>
                 <div class="col-md-1 text-center">
@@ -94,6 +96,22 @@
                     if (isset($_POST['from']) && isset($_POST['to'])) {
                         $fromCurrency = $_POST['from'];
                         $toCurrency = $_POST['to'];
+                        if ($toCurrency == $fromCurrency){
+                            echo "<h4>Please, choose different valutes to convert</h4>";
+                        }
+                        elseif ($toCurrency != 'UZS' && $fromCurrency != 'UZS'){
+                            echo "<h4>Please, choose UZS for one of the valutes to convert</h4>";
+                        }
+                        elseif ($toCurrency == 'UZS'){
+                            $exchangeRate = $currencies[$fromCurrency];
+                            $amount = $_POST['amount'];
+                            $amount = filter_input(INPUT_POST, 'amount', FILTER_SANITIZE_NUMBER_FLOAT);
+                            $converted = $amount*$exchangeRate;
+                            echo "1.00 " . $fromCurrency . " = " . $exchangeRate . " " . $toCurrency . " <i class='bi bi-info-circle'></i>";
+                            echo '<br>' . $amount . $fromCurrency . ' = ' . number_format($converted,2) . $toCurrency ;
+
+                        } 
+                        else {
                         $exchangeRate = $currencies[$toCurrency];
 
                         $amount = $_POST['amount'];
@@ -102,6 +120,7 @@
                         
                         echo "1.00 " . $toCurrency . " = " . $exchangeRate . " " . $fromCurrency . " <i class='bi bi-info-circle'></i>";
                         echo '<br>' . $amount . $fromCurrency . ' = ' . number_format($converted,2) . $toCurrency ;
+                        }
                     } else {
                         echo "1.00 USD = 12,862.73 UZS <i class='bi bi-info-circle'></i>";
                     }
