@@ -3,6 +3,8 @@
 
 class Converter{
     const CURRENS_API = "https://cbu.uz/uz/arkhiv-kursov-valyut/json/";
+    public array $currencies = [];
+
     public function __construct(){
         $ch = curl_init();
 
@@ -12,11 +14,20 @@ class Converter{
         $output = curl_exec($ch);
 
         curl_close($ch);
+        $this->currencies = json_decode($output);
+        
+    }
 
-        $decoded = json_decode($output);
+    public function getCurrencies(){
+        $seperated_data = [];
+        $currencies_info = $this->currencies;
+        foreach($currencies_info as $curr){
+            $seperated_data[$curr->Ccy] = $curr->Rate;
+        }
+        return $seperated_data;
+    }
 
-        echo $decoded[0]->Ccy;
+    public function exchange($value,$currency_name='USD'){
+            return number_format($value / $this->getCurrencies()[$currency_name],2) . ' ' . $currency_name;
     }
 }
-
-$db = new Converter();
