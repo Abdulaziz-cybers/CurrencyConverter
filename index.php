@@ -1,9 +1,10 @@
 <?php
 
-require 'Converter.php';
+require 'src/Converter.php';
 
 $currency = new Converter();
 
 $currencies = $currency->getCurrencies();
 
-require 'views/currency.php';
+
+require 'resourses/views/currency.php';
