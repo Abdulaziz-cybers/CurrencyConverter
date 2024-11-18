@@ -14,37 +14,5 @@ class Bot
         curl_close($ch);
         return $response;
     }
-    public function handleUpdate($update) {
-        global $currencies;
-        $message = $update['message'];
-        if (isset($message['text'])) {
-            $text = $message['text'];
-            if ($text == '/start') {
-                $this->makeRequest('sendMessage', [
-                    'chat_id' => 1214786217,
-                    'text' => 'Welcome!  This is a telegram bot of Abdulaziz. To know about currencies, type "/currency"',
-                ]);
-            } elseif ($text == '/currency'){
-                $formattedCurrencies = '';
-                foreach($currencies as $currency => $rate){
-                    $formattedCurrencies .= "$currency: $rate UZS\n";
-                }
-                $this->makeRequest('sendMessage', [
-                    'chat_id' => 1214786217,
-                    'text' => $formattedCurrencies,
-                ]);
-            }
-        }
-    }
-
-    public function getUpdates(){
-        $response = $this->makeRequest('getUpdates');
-        $updates = json_decode($response, true);
-        if(isset($updates['result'])) {
-            foreach ($updates['result'] as $update) {
-                $this->handleUpdate($update);
-            }
-        }
-    }
 }
 
