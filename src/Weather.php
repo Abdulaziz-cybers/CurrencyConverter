@@ -1,6 +1,6 @@
 <?php
 class Weather {
-    const WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/weather?q=Tashkent&appid=1f2c4527291b18aaab758440a1f8e071';
+    const WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/weather?q=Tashkent&appid=1f2c4527291b18aaab758440a1f8e071&units=metric';
     public $weather_data = [];
     public function __construct () {
         $ch = curl_init();
