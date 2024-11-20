@@ -1,21 +1,16 @@
 <?php
 require 'src/Bot.php';
-$bot = new Bot();
-
 require 'src/Converter.php';
-
-$currency = new Converter();
-$currencies = $currency->getCurrencies();
-
 require 'src/Weather.php';
+
+$bot = new Bot();
+$currency = new Converter();
 $weather = new Weather();
 
-date_default_timezone_set('Asia/Tashkent');
-$c_time = date('Y-m-d');
+$currencies = $currency->getCurrencies();
 
-$Prayer_API = "https://api.aladhan.com/v1/timings/" . $c_time . "/?latitude=41.3775&longitude=64.5853";
-
-$update = json_decode(file_get_contents('php://input'),true);
+$update = json_decode(file_get_contents('php://input'));
+var_dump($update);
 
 $message = $update['message'];
 if (isset($message['text'])) {
@@ -29,7 +24,7 @@ if (isset($message['text'])) {
             'chat_id' => $message['chat']['id'],
             'text' => $formattedCurrencies,
         ]);
-    }elseif ($text == '/weather'){
+    }elseif ($text == '/weather') {
         $bot->makeRequest('sendMessage', [
             'chat_id' => $message['chat']['id'],
             'text' => "Harorat: " . $weather->getWeather()->main->temp . "°C\n" .
