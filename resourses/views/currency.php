@@ -29,7 +29,6 @@
                         
                         <?php
                         global $currencies;
-
                         foreach ($currencies as $key => $rate) {
                             echo '<option value="' . $key . '">' . $key . '</option>';
                         }
@@ -60,6 +59,7 @@
                         $amount = $_POST['amount'];
                         $amount = filter_input(INPUT_POST, 'amount', FILTER_SANITIZE_NUMBER_FLOAT);
                         $currency->exchange($fromCurrency, $toCurrency, $amount);
+
                     } else {
                         echo "1.00 USD = 12,862.73 UZS <i class='bi bi-info-circle'></i>";
                     }
@@ -74,7 +74,7 @@
         <p class="text-muted">If you’ve got a target exchange rate in mind but haven’t got time to keep tabs on market
             movement, then a firm order could be perfect for you. When your chosen rate is reached, we’ll act immediately,
             leaving you free to concentrate on your business.</p>
-        <a href="./weather.php" class="btn btn-outline-danger">Ob havo ma'lumotlari</a>
+        <a href="./weather" class="btn btn-outline-danger">Ob havo ma'lumotlari</a>
     </div>
 </body>
 </html>

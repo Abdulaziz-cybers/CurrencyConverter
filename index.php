@@ -1,9 +1,17 @@
 <?php
 
-require 'src/Converter.php';
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-$currency = new Converter();
+if ($uri == '/weather') {
+    require 'resourses/views/weather.php';
+}elseif ($uri == '/bot') {
+    require 'app/bot.php';
+}elseif ($uri == '/currency') {
+    require 'src/Converter.php';
+    $currency = new Converter();
+    $currencies = $currency->getCurrencies();
 
-$currencies = $currency->getCurrencies();
+    require 'resourses/views/currency.php';
 
-require 'resourses/views/currency.php';
+
+}

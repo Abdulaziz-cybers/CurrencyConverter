@@ -9,7 +9,7 @@ class Converter{
     public function __construct(){
         $this->client = new Client([
             'base_uri' => self::CURRENCY_API,
-            'timeout'  => 2.0,
+            'timeout'  => 5.0,
             ]);
         $request = $this->client->request('GET' );
         $this->currencies = json_decode($request->getBody()->getContents());

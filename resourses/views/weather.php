@@ -21,7 +21,7 @@ $weather = new Weather();
         <div class="mb-3">
             <img id="weather-icon" src="<?php echo 'https://openweathermap.org/img/wn/' . $weather->getWeather()->weather[0]->icon .'@2x.png';?>" alt="Weather Icon" class="weather-icon">
         </div>
-        <h2 class="mb-3" id="temperature"><?php echo (int)$weather->getWeather()->main->temp - 273.15; ?>^C</h2>
+        <h2 class="mb-3" id="temperature"><?php echo (int)$weather->getWeather()->main->temp ; ?>°C</h2>
         <h4 id="description"><?php echo $weather->getWeather()->weather[0]->description ?></h4>
 
         <div class="d-flex justify-content-around">
@@ -31,7 +31,7 @@ $weather = new Weather();
             </div>
             <div>
                 <h5>Bosim</h5>
-                <p id="humidity"><?php echo $weather->getWeather()->main->pressure;?></p>
+                <p id="humidity"><?php echo $weather->getWeather()->main->pressure;?>hPa</p>
             </div>
             <div>
                 <h5>Shamol</h5>
