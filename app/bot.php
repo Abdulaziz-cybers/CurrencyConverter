@@ -27,7 +27,7 @@ if (isset($update['message'])) {
                 'chat_id' => $message['chat']['id'],
                 'text' => $formattedCurrencies,
             ]);
-        } elseif ($text == '/weather') {
+        } elseif ($text == '/weather' || $text == 'Ob havo') {
             $bot->makeRequest('sendMessage', [
                 'chat_id' => $message['chat']['id'],
                 'text' => "Harorat: " . $weather->getWeather()->main->temp . "°C\n" .
@@ -46,7 +46,16 @@ if (isset($update['message'])) {
             $bot->makeRequest('sendMessage', [
                 'chat_id' => $message['chat']['id'],
                 'text' => 'Welcome!  This is a telegram bot of Abdulaziz. To know about currencies, type "/currency"',
+                'reply_markup' => json_encode([
+                    'resize_keyboard' => true,
+                    'keyboard' => [
+                        [['text'=>'Ob havo'],['text'=>'Btn1']]
+                    ],
+                ]),
             ]);
+            $bot->saveUser($message['from']['id'],$message['from']['username']);
+
+        }elseif ($text == 'START'){
             $bot->saveUser($message['from']['id'],$message['from']['username']);
         }
     }
