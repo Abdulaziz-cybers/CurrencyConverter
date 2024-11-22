@@ -9,9 +9,7 @@
 </head>
 <body class="weatherBody">
 <?php
-require "src/Weather.php";
-
-$weather = new Weather();
+global $weather;
 
 ?>
 <div class="container text-center">

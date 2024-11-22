@@ -1,8 +1,11 @@
 <?php
+require 'vendor/autoload.php';
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 if ($uri == '/weather') {
+    require "src/Weather.php";
+    $weather = new Weather();
     require 'resourses/views/weather.php';
 }elseif ($uri == '/bot') {
     require 'app/bot.php';
