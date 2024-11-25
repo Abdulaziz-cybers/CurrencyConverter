@@ -8,7 +8,30 @@
     <title>Converter</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="resourses/css/style.css"
+    <style>
+        .currency-card {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .currency-section {
+            padding: 60px 0;
+        }
+
+        .info-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .btn-primary-custom {
+            background-color: #d32f2f;
+            border: none;
+        }
+    </style>
 </head>
 <body>
 <div class="currency-section text-center pt-5 bg-dark-subtle">
